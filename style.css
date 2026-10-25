@@ -643,3 +643,19 @@ section.section:has(.speakers) { padding-top: 40px; }
   .lead__big li { white-space: normal; }
   .lead__big li .nw { white-space: normal; }
 }
+
+/* 横にはみ出して2画面に分かれないよう、狭い幅では必ず1列にする */
+.info-grid, .cards, .steps, .speakers, .apply, .details, .speaker, .lead, .themes {
+  min-width: 0;
+  max-width: 100%;
+}
+.info-grid > div, .speakers > *, .cards > *, .steps > * { min-width: 0; }
+@media (max-width: 1000px) {
+  .info-grid { grid-template-columns: minmax(0, 1fr); gap: 40px; }
+  .cards, .steps, .speakers { grid-template-columns: minmax(0, 1fr); }
+  .section__head::after { display: none; }
+}
+@media (max-width: 480px) {
+  .apply { grid-template-columns: minmax(0, 1fr); justify-items: center; text-align: center; }
+  .apply__qr, .apply__text, .apply .micro--apply, .apply .btn--hero { grid-column: 1; grid-row: auto; justify-self: center; }
+}
